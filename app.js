@@ -616,7 +616,7 @@ function stem(q){const k=q.cap;if(!k)return q.html+(q.img?'<p><img alt="Figura d
 const ALL=[...TEORIA,...PRACTICA],BN={f:'Examen Final',p:'Parcial 2',q:'Parcial 1'};
 let done2={};try{done2=JSON.parse(localStorage.troncalLec||'{}')}catch(e){}
 const saveL=()=>{try{localStorage.troncalLec=JSON.stringify(done2)}catch(e){}};
-const trackOf=id=>id[0]=='t'?TEORIA:PRACTICA,cnt=T=>T.filter(l=>done2[l.id]).length,nextOf=T=>T.find(l=>!done2[l.id])||T[0];
+const trackOf=id=>id[0]=='p'?PRACTICA:TEORIA,cnt=T=>T.filter(l=>done2[l.id]).length,nextOf=T=>T.find(l=>!done2[l.id])||T[0];
 const home={};['vlsm','net','drill'].forEach(w=>home[w]=$('w-'+w));
 function card(T,id,t,d){const n=nextOf(T),c=cnt(T);return `<article class="track"><h2>${t}</h2><p>${d}</p><p class="mut">${c} de ${T.length} lecciones terminadas</p><div class="bar"><i style="transform:scaleX(${c/T.length})"></i></div><div class="row"><a class="btn p" href="#l/${n.id}">${c==T.length?'Repasar':c?'Continuar':'Empezar'}</a><a class="btn" href="#${id}">Ver temario</a></div></article>`}
 function toc(T,cur){return '<ol class="toc">'+T.map(l=>`<li class="${done2[l.id]?'dn':''}"><a href="#l/${l.id}" ${l.id==cur?'aria-current="page"':''}><span class="tick" aria-hidden="true">${done2[l.id]?'✓':T.indexOf(l)+1}</span><span>${l.title}${done2[l.id]?'<span class="vh"> (terminada)</span>':''}</span></a></li>`).join('')+'</ol>'}
@@ -744,5 +744,6 @@ im.addEventListener('pointerup',()=>{drag=null;ap()});im.draggable=false;
 document.getElementById('sv-zM').onclick=()=>zoomAt(s*1.4,...ctr());document.getElementById('sv-zm').onclick=()=>zoomAt(s/1.4,...ctr());document.getElementById('sv-z0').onclick=reset;
 document.addEventListener('keydown',e=>{if(v.hidden)return;if(e.key=='+'||e.key=='=')zoomAt(s*1.4,...ctr());else if(e.key=='-')zoomAt(s/1.4,...ctr());else if(e.key=='0')reset()});
 v.addEventListener('touchstart',e=>{if(s>1)e.stopPropagation()},{capture:true,passive:true});v.addEventListener('touchend',e=>{if(s>1)e.stopImmediatePropagation()},{capture:true});
+let pinch=null;const dist=t=>Math.hypot(t[0].clientX-t[1].clientX,t[0].clientY-t[1].clientY);im.addEventListener('touchstart',e=>{if(e.touches.length==2){pinch={d:dist(e.touches),s};drag=null}},{passive:true});im.addEventListener('touchmove',e=>{if(pinch&&e.touches.length==2){e.preventDefault();const t=e.touches;zoomAt(pinch.s*dist(t)/pinch.d,(t[0].clientX+t[1].clientX)/2,(t[0].clientY+t[1].clientY)/2)}},{passive:false});im.addEventListener('touchend',e=>{if(e.touches.length<2)pinch=null});
 ap()})();
 

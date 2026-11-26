@@ -66,3 +66,6 @@ h2{font-size:29px;margin:40px 0 10px}.goal{font-size:20px;color:var(--mut)}body{
 .vz{display:flex;align-items:center;gap:8px;margin-left:auto}.vz span{min-width:48px;text-align:center}#vis .vz button{padding:6px 12px}
 
 .vidw{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:20px;align-items:start;margin:18px 0}#vplayer{width:100%;aspect-ratio:16/9;background:#000;border-radius:10px}.vtit{font-size:20px;margin:0 0 10px}.vcaps{display:flex;flex-direction:column;gap:6px;max-height:70vh;overflow:auto}.vcaps button{display:flex;gap:12px;align-items:center;text-align:left;padding:8px 12px}.vcaps button b{font-variant-numeric:tabular-nums;color:var(--mut)}.vcaps button.on{border-color:currentColor;font-weight:700}@media (max-width:900px){.vidw{grid-template-columns:1fr}.vcaps{max-height:none}}
+.steps>*,.st,.sb,.les{min-width:0}.st>summary{min-width:0}
+@media(max-width:700px){.top{flex-wrap:wrap;row-gap:6px}.top nav{order:3;flex-basis:100%;flex-wrap:wrap;overflow:visible}.top nav a{padding:6px 10px}
+.vbar{flex-wrap:wrap}.vbar #sv-vcap{flex-basis:100%;font-size:13px}.vz{margin-left:0}#vis .vfoot button{padding:10px 16px}}
